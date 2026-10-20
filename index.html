@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qelvixa Erase — Responsive AI Image Editor</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" role="banner">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand" aria-label="Qelvixa Erase Homepage">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+          </svg>
+        </div>
+        <span>Qelvixa Erase</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link">Home</a></li>
+          <li><a href="#workspace" class="nav-link">Image Editor</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+          </svg>
+        </button>
+        <a href="#workspace" class="btn-primary" onclick="focusUploadZone()">
+          <span>Start Editing</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileDrawer" class="mobile-drawer" role="region" aria-label="Mobile Navigation Menu">
+      <a href="#hero" class="nav-link" onclick="closeMobileMenu()">Home</a>
+      <a href="#workspace" class="nav-link" onclick="closeMobileMenu()">Image Editor</a>
+      <a href="#features" class="nav-link" onclick="closeMobileMenu()">Features</a>
+      <a href="#how-it-works" class="nav-link" onclick="closeMobileMenu()">How It Works</a>
+      <a href="#faq" class="nav-link" onclick="closeMobileMenu()">FAQ</a>
+      <button class="btn-primary" style="justify-content: center; width: 100%;" onclick="focusUploadZone(); closeMobileMenu();">Start Editing Now</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          100% Client-Side Privacy — Zero Server Uploads
+        </div>
+        <h1 class="hero-title">Your Images.<br>Your Creative Control.</h1>
+        <p class="hero-subtitle">Upload, adjust, sharpen, crop, and download your Gemini-generated art with an instantaneous, browser-powered editing workstation.</p>
+        
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="#workspace" class="btn-primary" onclick="focusUploadZone()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+            Upload Image
+          </a>
+          <a href="#features" class="btn-tool" style="width: auto; padding: 0.65rem 1.4rem; border-radius: var(--radius-full);">
+            Explore Features
+          </a>
+        </div>
+
+        <div class="hero-highlights">
+          <div class="hero-pill">
+            <svg width="16" height="16" color="#10b981" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Private In-Browser Processing
+          </div>
+          <div class="hero-pill">
+            <svg width="16" height="16" color="#10b981" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Instant Side-by-Side Compare
+          </div>
+          <div class="hero-pill">
+            <svg width="16" height="16" color="#10b981" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            PNG / JPEG / WebP Export
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upload & Editor Workspace -->
+    <section id="workspace" class="workspace-section">
+      <div class="container">
+        <div class="workspace-card">
+
+          <!-- Drop / Upload Area -->
+          <div id="uploadZone" class="upload-zone" tabindex="0" role="button" aria-label="Upload an image file">
+            <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp" style="display: none;">
+            <div class="upload-icon-circle">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+            </div>
+            <h2 class="upload-title">Drop your image here, or browse files</h2>
+            <p class="upload-desc">Select an image generated from Google Gemini or your local files to get started.</p>
+            <div class="upload-meta">Supported formats: PNG, JPG/JPEG, WebP &bull; Max recommended: 25MB</div>
+          </div>
+
+          <!-- Active Editor Workspace -->
+          <div id="editorLayout" class="editor-layout">
+            
+            <!-- Left Sidebar: Tools & Filters -->
+            <aside class="editor-sidebar" aria-label="Editing controls">
+              <div>
+                <div class="sidebar-section-title">Orientation & Transform</div>
+                <div class="control-row" style="margin-bottom: 0.5rem;">
+                  <button id="btnRotateLeft" class="btn-tool" title="Rotate 90° CCW">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    Rot -90°
+                  </button>
+                  <button id="btnRotateRight" class="btn-tool" title="Rotate 90° CW">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+                    Rot +90°
+                  </button>
+                </div>
+                <div class="control-row">
+                  <button id="btnFlipH" class="btn-tool" title="Flip Horizontally">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 7 5 5-5 5V7z"/><path d="m21 7-5 5 5 5V7z"/><line x1="12" x2="12" y1="2" y2="22"/></svg>
+                    Flip H
+                  </button>
+                  <button id="btnFlipV" class="btn-tool" title="Flip Vertically">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 3 5 5 5-5H7z"/><path d="m7 21 5-5 5 5H7z"/><line x1="2" x2="22" y1="12" y2="12"/></svg>
+                    Flip V
+                  </button>
+                </div>
+                <button id="btnToggleCrop" class="btn-tool" style="margin-top: 0.5rem;" title="Interactive Crop Area">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg>
+                  <span>Crop Area</span>
+                </button>
+                <button id="btnApplyCrop" class="btn-tool" style="display: none; margin-top: 0.5rem; background: #10b981; color: white;" title="Apply Crop">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Apply Crop</span>
+                </button>
+              </div>
+
+              <div class="tool-group">
+                <div class="sidebar-section-title">Color Adjustments</div>
+                
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Brightness</span>
+                    <span id="valBrightness">100%</span>
+                  </div>
+                  <input type="range" id="rangeBrightness" class="slider-input" min="0" max="200" value="100">
+                </div>
+
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Contrast</span>
+                    <span id="valContrast">100%</span>
+                  </div>
+                  <input type="range" id="rangeContrast" class="slider-input" min="0" max="200" value="100">
+                </div>
+
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Saturation</span>
+                    <span id="valSaturation">100%</span>
+                  </div>
+                  <input type="range" id="rangeSaturation" class="slider-input" min="0" max="200" value="100">
+                </div>
+
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Sharpness</span>
+                    <span id="valSharpness">0%</span>
+                  </div>
+                  <input type="range" id="rangeSharpness" class="slider-input" min="0" max="100" value="0">
+                </div>
+              </div>
+
+              <div style="margin-top: auto;">
+                <div class="control-row">
+                  <button id="btnUndo" class="btn-tool" title="Undo change" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>
+                    Undo
+                  </button>
+                  <button id="btnRedo" class="btn-tool" title="Redo change" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"/></svg>
+                    Redo
+                  </button>
+                </div>
+                <button id="btnResetAll" class="btn-tool" style="margin-top: 0.5rem; color: #ef4444;" title="Reset all adjustments">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                  Reset Edits
+                </button>
+              </div>
+            </aside>
+
+            <!-- Center Stage: Canvas Viewport -->
+            <section class="editor-stage" aria-label="Image preview area">
+              <div class="stage-top-bar">
+                <div class="stage-pill">
+                  <span id="zoomLevelText">100%</span>
+                  <div style="display: flex; gap: 4px; margin-left: 6px;">
+                    <button id="btnZoomOut" style="padding: 2px;" title="Zoom Out">-</button>
+                    <button id="btnZoomIn" style="padding: 2px;" title="Zoom In">+</button>
+                    <button id="btnZoomFit" style="padding: 2px 4px; font-size: 0.75rem;" title="Fit">Fit</button>
+                  </div>
+                </div>
+
+                <div class="stage-pill" style="cursor: pointer;" id="btnToggleCompare">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" x2="12" y1="3" y2="21"/></svg>
+                  <span id="compareBtnLabel">Hold Compare</span>
+                </div>
+              </div>
+
+              <!-- Canvas wrapper -->
+              <div class="canvas-viewport-container" id="viewportContainer">
+                <canvas id="previewCanvas"></canvas>
+
+                <!-- Interactive Crop Box -->
+                <div id="cropOverlay" class="crop-overlay">
+                  <div class="crop-handle tl" data-corner="tl"></div>
+                  <div class="crop-handle tr" data-corner="tr"></div>
+                  <div class="crop-handle bl" data-corner="bl"></div>
+                  <div class="crop-handle br" data-corner="br"></div>
+                </div>
+
+                <!-- Live Before-and-After Slider Comparison -->
+                <div id="comparisonWrapper" class="comparison-wrapper">
+                  <div id="comparisonBefore" class="comparison-before">
+                    <canvas id="compareCanvas"></canvas>
+                  </div>
+                  <div id="comparisonDivider" class="comparison-divider">
+                    <div class="divider-handle">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Right Sidebar: Properties & Export -->
+            <aside class="editor-sidebar right" aria-label="Image properties and export">
+              <div>
+                <div class="sidebar-section-title">Image Details</div>
+                <div class="meta-box">
+                  <div class="meta-row"><span>Source Format:</span><strong id="metaFormat">PNG</strong></div>
+                  <div class="meta-row"><span>Current Dimensions:</span><strong id="metaDims">1024 x 1024</strong></div>
+                  <div class="meta-row"><span>Source File Size:</span><strong id="metaSize">1.2 MB</strong></div>
+                </div>
+              </div>
+
+              <div class="tool-group">
+                <div class="sidebar-section-title">Export Settings</div>
+                
+                <div>
+                  <label for="exportFormatSelect" style="font-size: 0.85rem; font-weight: 500; display: block; margin-bottom: 0.35rem;">Format</label>
+                  <select id="exportFormatSelect" class="select-input">
+                    <option value="image/png">PNG (.png)</option>
+                    <option value="image/jpeg">JPEG (.jpg)</option>
+                    <option value="image/webp">WebP (.webp)</option>
+                  </select>
+                </div>
+
+                <div id="qualityControlWrapper" class="slider-control" style="display: none;">
+                  <div class="slider-label-row">
+                    <span>Quality</span>
+                    <span id="valQuality">92%</span>
+                  </div>
+                  <input type="range" id="rangeQuality" class="slider-input" min="10" max="100" value="92">
+                </div>
+
+                <div class="meta-box" style="margin-top: 0.25rem;">
+                  <div class="meta-row"><span>Estimated Size:</span><strong id="estExportSize">Calculating...</strong></div>
+                </div>
+
+                <button id="btnDownload" class="btn-primary" style="justify-content: center; width: 100%; margin-top: 0.5rem;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  <span>Download Image</span>
+                </button>
+
+                <button id="btnChooseAnother" class="btn-tool" style="justify-content: center; width: 100%; border: 1px dashed var(--border-color);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4-4 4 4"/></svg>
+                  <span>Open Different Image</span>
+                </button>
+              </div>
+
+              <div class="provenance-card">
+                <strong>Provenance & Metadata Notice:</strong>
+                All operations are calculated dynamically in your browser. Standard canvas export does not strip or modify existing structural AI watermarks embedded into pixel patterns, but non-pixel EXIF tags may be reset.
+              </div>
+            </aside>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="container" style="padding-bottom: 2rem;">
+      <h2 class="section-title">Engineered for Precision & Privacy</h2>
+      <p class="section-subtitle">A modern toolkit designed specifically for tweaking, reframing, and polishing AI imagery directly on your device.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>100% In-Browser Privacy</h3>
+          <p>No remote file uploads or API queries. Your photos, prompts, and output art never leave your browser sandbox.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <h3>Precision Color & Sharpness</h3>
+          <p>Full control over brightness, contrast, and saturation, coupled with spatial 3x3 convolution kernel sharpening.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg>
+          </div>
+          <h3>Arbitrary Crop & Transforms</h3>
+          <p>Easily remove unwanted borders, isolate key subjects, and rotate or flip horizontally and vertically in realtime.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" x2="12" y1="3" y2="21"/></svg>
+          </div>
+          <h3>Side-by-Side Comparison</h3>
+          <p>Interactive split-view comparison slider and hold-to-compare tools ensure you never lose perspective on modifications.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          </div>
+          <h3>Multi-Format Production Export</h3>
+          <p>Export directly to high-fidelity PNG, WebP, or compact JPEG with fine-grained control over compression quality.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          </div>
+          <h3>Full Undo / Redo History</h3>
+          <p>Experiment freely with confidence. Step backward or forward through every adjustment with a persistent state stack.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="container" style="padding-bottom: 2rem;">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Three straightforward steps to professional AI image refinement.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-badge">1</div>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.15rem;">Drop or Select</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">Select or drag your image from your system. It is immediately rendered in the browser DOM memory without server transfers.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">2</div>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.15rem;">Refine & Enhance</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">Fine-tune brightness, contrast, and saturation. Apply high-pass sharpening or drag crop handles to frame the artwork.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">3</div>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.15rem;">Export & Save</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">Choose PNG, JPG, or WebP format, inspect the calculated output file weight, and trigger an immediate instant download.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Common questions about privacy, formats, and client-side processing.</p>
+
+      <div class="faq-wrapper">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Which image formats are supported?</span>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Qelvixa Erase supports PNG, JPEG, JPG, and WebP files. You can export into any of these formats regardless of what format you initially uploaded.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are images uploaded to an external server?</span>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            No. The entire rendering, filtering, cropping, and export process executes client-side using the HTML5 Canvas API and JavaScript. Your image data never leaves your device.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I use this editor on mobile devices?</span>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            Yes. The studio is built with a responsive mobile-first architecture that provides touch targets, responsive sidebars, and fluid pinch/zoom handling across phones and tablets.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Does this tool strip or remove AI provenance markers?</span>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            No. This tool does not bypass, strip, or alter digital watermarking or provenance mechanisms (such as SynthID). It provides standard creative adjustments, re-framing, and color corrections.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is this studio officially affiliated with Google?</span>
+            <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            No. Qelvixa Erase is an independent creative web tool built for users working with generated media and is not affiliated with, endorsed by, or sponsored by Google LLC.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div class="brand">
+            <div class="brand-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+            </div>
+            <span>Qelvixa Erase</span>
+          </div>
+          <p class="footer-desc">A browser-native image enhancement suite tailored for AI artwork, preserving confidentiality with zero server uploads.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#workspace">Editor</a></li>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal & Safety</h4>
+            <ul>
+              <li><a href="#hero">Privacy by Design</a></li>
+              <li><a href="#faq">Provenance FAQ</a></li>
+              <li><a href="#hero">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer-bar">
+        <p>&copy; 2026 Qelvixa Erase. Independent creative utility. Not affiliated with, authorized by, or associated with Google LLC or its subsidiaries.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toasts -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Application Logic -->
+  <script src="script.js" defer></script>
+</body>
+</html>
